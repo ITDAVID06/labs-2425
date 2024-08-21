@@ -4,13 +4,22 @@ require "helpers/helper-functions.php";
 
 session_start();
 
-$contact_number = $_POST['contact_number'];
-$program = $_POST['program'];
+// $contact_number = $_POST['contact_number'];
+// $program = $_POST['program'];
+$email = $_POST['email'];
+$password = $_POST['password'];
 $agree = $_POST['agree'];
+$age = $age = (new DateTime())->diff(new DateTime($_SESSION['birthdate']))->y - ((new DateTime()) < new DateTime((new DateTime())->format('Y') . '-' . (new DateTime($_SESSION['birthdate']))->format('m-d')) ? 1 : 0);;
 
-$_SESSION['contact_number'] = $contact_number;
-$_SESSION['program'] = $program;
+$_SESSION['email'] = $email;
+$_SESSION['password'] = md5($password);
 $_SESSION['agree'] = $agree;
+$_SESSION['age'] = $age;
+// $_SESSION['contact_number'] = $contact_number;
+// $_SESSION['program'] = $program;
+
+
+
 
 $form_data = $_SESSION;
 

@@ -4,13 +4,15 @@ require "helpers/helper-functions.php";
 
 session_start();
 
-$birthdate = $_POST['birthdate'];
-$sex = $_POST['sex'];
+// $birthdate = $_POST['birthdate'];
+// $sex = $_POST['sex'];
+$program = $_POST['program'];
 $address = $_POST['address'];
 
-$_SESSION['birthdate'] = $birthdate;
-$_SESSION['sex'] = $sex;
+// $_SESSION['birthdate'] = $birthdate;
+// $_SESSION['sex'] = $sex;
 $_SESSION['address'] = $address;
+$_SESSION['program'] = $program;
 
 dump_session();
 ?>
@@ -37,10 +39,10 @@ dump_session();
         <form action="thank-you.php" method="POST">
 
           <fieldset>
-            <label>Contact Number</label>
-            <input type="text" name="contact_number" placeholder="+639123456789" />
+            <!-- <label>Contact Number</label>
+            <input type="text" name="contact_number" placeholder="+639123456789" /> -->
 
-            <label>Program</label>
+            <!-- <label>Program</label>
             <select name="program">
               <option disabled="disabled" selected="">Select an option</option>
               <option value="cs">Computer Science</option>
@@ -48,10 +50,16 @@ dump_session();
               <option value="is">Information Systems</option>
               <option value="se">Software Engineering</option>
               <option value="ds">Data Science</option>
-            </select>
+            </select> -->
+
+          <label>Email address</label>
+          <input type="email" name="email" placeholder="example@canonical.com" autocomplete="email" required>
+
+          <label>Password</label>
+          <input type="password" name="password" placeholder="******" autocomplete="current-password" required>
 
             <label class="p-checkbox--inline">
-            <input type="checkbox" name="agree">
+            <input type="checkbox" name="agree" required>
             </label>
             I agree to the terms and conditions...
             
