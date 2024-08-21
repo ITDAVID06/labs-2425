@@ -9,8 +9,8 @@ session_start();
 $email = $_POST['email'];
 $password = $_POST['password'];
 $agree = $_POST['agree'];
-$age = $age = (new DateTime())->diff(new DateTime($_SESSION['birthdate']))->y - ((new DateTime()) < new DateTime((new DateTime())->format('Y') . '-' . (new DateTime($_SESSION['birthdate']))->format('m-d')) ? 1 : 0);;
-
+#$age = (new DateTime())->diff(new DateTime($_SESSION['birthdate']))->y - ((new DateTime()) < new DateTime((new DateTime())->format('Y') . '-' . (new DateTime($_SESSION['birthdate']))->format('m-d')) ? 1 : 0);;
+$age = (new DateTime())->diff(new DateTime($_SESSION['birthdate']))->y - ((new DateTime()) < new DateTime((new DateTime())->format('Y') . '-' . (new DateTime($_SESSION['birthdate']))->format('m-d')) ? 1 : 0);
 $_SESSION['email'] = $email;
 $_SESSION['password'] = md5($password);
 $_SESSION['agree'] = $agree;
@@ -18,7 +18,39 @@ $_SESSION['age'] = $age;
 // $_SESSION['contact_number'] = $contact_number;
 // $_SESSION['program'] = $program;
 
+$csv_file = 'registrations.csv';
 
+// Data to be added
+$new_data = [
+    $_SESSION['fullname'],
+    $_SESSION['birthdate'],
+    $_SESSION['age'],
+    $_SESSION['contact_number'],
+    $_SESSION['sex'],
+    $_SESSION['program'],
+    $_SESSION['address'],
+    $_SESSION['email'],
+];
+
+
+$file_exists = file_exists($csv_file);
+
+
+$file_handle = fopen($csv_file, 'a');
+
+if ($file_handle !== false) {
+    if (!$file_exists) {
+        fputcsv($file_handle, array_keys($new_data));
+    }
+
+    fputcsv($file_handle, array_values($new_data));
+
+    fclose($file_handle);
+
+    echo 'Data has been successfully written to the CSV file.';
+} else {
+    die('Failed to open the CSV file for writing.');
+}
 
 
 $form_data = $_SESSION;

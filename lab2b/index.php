@@ -1,6 +1,12 @@
 <?php
 
-define('CUSTOMERS_FILE_PATH', 'customers-100.csv');
+define('CUSTOMERS_FILE_PATH', 'customers-100000.csv');
+
+// Start time measurement using microtime
+$time_start = microtime(true);
+
+usleep(mt_rand(100, 10000));
+
 
 function get_hundred_customers_data()
 {
@@ -32,6 +38,13 @@ function get_hundred_customers_data()
 
 $customers = get_hundred_customers_data();
 
+// End time measurement
+$time_end = microtime(true);
+$elapsed_time = $time_end - $time_start;
+
+// Format the server end time
+$end_time_formatted = date('Y-m-d H:i:s') . sprintf('.%06d', ($time_end - (int)$time_end) * 1000000);
+
 ?>
 <html>
 <head>
@@ -53,6 +66,12 @@ $customers = get_hundred_customers_data();
 <small>
 The dataset is retrieved from this URL <a href="https://www.datablist.com/learn/csv/download-sample-csv-files">https://www.datablist.com/learn/csv/download-sample-csv-files</a>
 </small>
+<p>
+    <strong>Time Elapsed:</strong> <?php echo number_format($elapsed_time, 6); ?> seconds
+</p>
+<p>
+    <strong>Script Finished At:</strong> <?php echo htmlspecialchars($end_time_formatted); ?>
+</p>
 <table aria-label="Customers Dataset">
     <thead>
         <tr>
@@ -68,18 +87,17 @@ The dataset is retrieved from this URL <a href="https://www.datablist.com/learn/
     foreach ($customers['data'] as $record):
     ?>
         <tr>
-            <td><?php echo $record[1]; ?></td>
-            <td><?php echo "<strong>{$record[3]}</strong>, {$record[2]}"; ?></td>
-            <td><?php echo $record[4]; ?></td>
-            <td><?php echo $record[7]; ?></td>
-            <td><?php echo $record[9]; ?></td>
+            <td><?php echo htmlspecialchars($record[1]); ?></td>
+            <td><?php echo "<strong>" . htmlspecialchars($record[3]) . "</strong>, " . htmlspecialchars($record[2]); ?></td>
+            <td><?php echo htmlspecialchars($record[4]); ?></td>
+            <td><?php echo htmlspecialchars($record[7]); ?></td>
+            <td><?php echo htmlspecialchars($record[9]); ?></td>
         </tr>
     <?php
     endforeach;
     ?>
     </tbody>
 </table>
-
 
 </body>
 </html>

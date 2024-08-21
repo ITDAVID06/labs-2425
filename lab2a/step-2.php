@@ -7,7 +7,7 @@ session_start();
 $fullname = $_POST['fullname'];
 $birthdate = (new DateTime($_POST['birthdate']))->format('F j, Y');
 $sex = $_POST['sex'];
-// $contact_number = $_POST['contact_number'];
+$contact_number = $_POST['contact_number'];
 // $email = $_POST['email'];
 // # Encrypt the password first before saving it to the Session Variables
 // $password = $_POST['password'];
@@ -16,6 +16,7 @@ $sex = $_POST['sex'];
 $_SESSION['fullname'] = $fullname;
 $_SESSION['birthdate'] = $birthdate;
 $_SESSION['sex'] = $sex;
+$_SESSION['contact_number'] = $contact_number;
 
 
 
