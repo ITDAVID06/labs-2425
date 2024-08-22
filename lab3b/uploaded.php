@@ -15,7 +15,7 @@ if (isset($_FILES['video_file'])) {
     ?>
     <html>
     <head>
-        <title>Uploaded Image</title>
+        <title>Uploaded Video</title>
         <style>
           body {
             background-color: #f5e1da; 
