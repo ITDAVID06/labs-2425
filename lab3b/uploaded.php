@@ -1,9 +1,9 @@
 <?php 
-if (isset($_FILES['video_file'])) {
+if (isset($_FILES['pdf_file'])) {
   $upload_directory = getcwd() . '/uploads/';
-  $file_name = $_FILES['video_file']['name'];
+  $file_name = $_FILES['pdf_file']['name'];
   $uploaded_file = $upload_directory . basename($file_name);
-  $temporary_file = $_FILES['video_file']['tmp_name'];
+  $temporary_file = $_FILES['pdf_file']['tmp_name'];
 
   if (!file_exists($upload_directory)) {
     mkdir($upload_directory);
@@ -11,11 +11,11 @@ if (isset($_FILES['video_file'])) {
 
   if (move_uploaded_file($temporary_file, $uploaded_file)) {
     $relative_path = '/uploads/';
-    $video_path = $relative_path . $file_name;
+    $pdf_path = $relative_path . $file_name;
     ?>
     <html>
     <head>
-        <title>Uploaded Video</title>
+        <title>Uploaded PDF</title>
         <style>
           body {
             background-color: #f5e1da; 
@@ -44,10 +44,10 @@ if (isset($_FILES['video_file'])) {
     </head>
     <body>
       <div class="image-card">
-        <h3>This is your uploaded video:</h3>
-        <video width='320' height='240' controls><source src='<?php echo $video_path; ?>' type='video/mp4'>Your browser does not support the video tag.</video>
+        <h3>This is your uploaded PDF:</h3>
+        <embed src='<?php echo $pdf_path;?>' type='application/pdf' width='600' height='400'>
       </div>
-      <h4>This is the information of the video file:</h4>
+      <h4>This is the information of the PDF file:</h4>
       <?php
       echo '<pre>';
       var_dump($_FILES);
@@ -58,7 +58,7 @@ if (isset($_FILES['video_file'])) {
     <?php
     exit;
   } else {
-    echo 'Failed to upload video file';
+    echo 'Failed to upload PDF file';
   }
 }
 ?>
