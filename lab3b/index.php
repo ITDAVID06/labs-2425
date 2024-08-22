@@ -77,6 +77,11 @@
       button:hover {
         background-color: #ff4f4f; /* Darker red/pink on hover */
       }
+
+      span{
+        font-size: 16px;
+        padding-top: 5px;
+      }
     </style>
 </head>
 
@@ -88,13 +93,13 @@
       <img class="p-logo-section__logo" src="https://www.auf.edu.ph/home/images/mascot/CCS.png" alt="College of Computing Studies Logo">
     </div>
 
-    <h4><b>Image-File-Upload</b></h4>
+    <h4><b>Video-File-Upload</b></h4>
 
     <form method="POST" action="uploaded.php" enctype="multipart/form-data">
       <div class="p-card">
-        <h3>Upload Image File:</h3>
+        <h3>Upload Video File:</h3>
         <p class="p-card__content">
-          <input type="file" name="jpg_file" accept="image/*" />
+          <input type="file" name="video_file" accept=".mp4" />
         </p>
       </div>
         <button type="submit">Upload</button>

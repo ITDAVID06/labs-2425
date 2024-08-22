@@ -1,9 +1,9 @@
 <?php 
-if (isset($_FILES['jpg_file'])) {
+if (isset($_FILES['video_file'])) {
   $upload_directory = getcwd() . '/uploads/';
-  $file_name = $_FILES['jpg_file']['name'];
+  $file_name = $_FILES['video_file']['name'];
   $uploaded_file = $upload_directory . basename($file_name);
-  $temporary_file = $_FILES['jpg_file']['tmp_name'];
+  $temporary_file = $_FILES['video_file']['tmp_name'];
 
   if (!file_exists($upload_directory)) {
     mkdir($upload_directory);
@@ -11,7 +11,7 @@ if (isset($_FILES['jpg_file'])) {
 
   if (move_uploaded_file($temporary_file, $uploaded_file)) {
     $relative_path = '/uploads/';
-    $image_path = $relative_path . $file_name;
+    $video_path = $relative_path . $file_name;
     ?>
     <html>
     <head>
@@ -44,10 +44,10 @@ if (isset($_FILES['jpg_file'])) {
     </head>
     <body>
       <div class="image-card">
-        <h3>This is your uploaded image:</h3>
-        <img src="<?php echo $image_path; ?>" alt="Uploaded Image"/>
+        <h3>This is your uploaded video:</h3>
+        <video width='320' height='240' controls><source src='<?php echo $video_path; ?>' type='video/mp4'>Your browser does not support the video tag.</video>
       </div>
-      <h4>This is the information of the image file:</h4>
+      <h4>This is the information of the video file:</h4>
       <?php
       echo '<pre>';
       var_dump($_FILES);
@@ -58,7 +58,7 @@ if (isset($_FILES['jpg_file'])) {
     <?php
     exit;
   } else {
-    echo 'Failed to upload image file';
+    echo 'Failed to upload video file';
   }
 }
 ?>
