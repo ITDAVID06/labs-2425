@@ -77,6 +77,11 @@
       button:hover {
         background-color: #ff4f4f; /* Darker red/pink on hover */
       }
+
+      span{
+        font-size: 16px;
+        padding-top: 5px;
+      }
     </style>
 </head>
 
