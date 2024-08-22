@@ -93,13 +93,13 @@
       <img class="p-logo-section__logo" src="https://www.auf.edu.ph/home/images/mascot/CCS.png" alt="College of Computing Studies Logo">
     </div>
 
-    <h4><b>PDF-File-Upload</b></h4>
+    <h4><b>Audio-File-Upload</b></h4>
 
     <form method="POST" action="uploaded.php" enctype="multipart/form-data">
       <div class="p-card">
-        <h3>Upload PDF File:</h3>
+        <h3>Upload Audio File:</h3>
         <p class="p-card__content">
-          <input type="file" name="pdf_file" accept=".pdf" />
+          <input type="file" name="audio_file" accept=".mp3" />
         </p>
       </div>
         <button type="submit">Upload</button>

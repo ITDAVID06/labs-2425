@@ -1,9 +1,9 @@
 <?php 
-if (isset($_FILES['pdf_file'])) {
+if (isset($_FILES['audio_file'])) {
   $upload_directory = getcwd() . '/uploads/';
-  $file_name = $_FILES['pdf_file']['name'];
+  $file_name = $_FILES['audio_file']['name'];
   $uploaded_file = $upload_directory . basename($file_name);
-  $temporary_file = $_FILES['pdf_file']['tmp_name'];
+  $temporary_file = $_FILES['audio_file']['tmp_name'];
 
   if (!file_exists($upload_directory)) {
     mkdir($upload_directory);
@@ -11,11 +11,11 @@ if (isset($_FILES['pdf_file'])) {
 
   if (move_uploaded_file($temporary_file, $uploaded_file)) {
     $relative_path = '/uploads/';
-    $pdf_path = $relative_path . $file_name;
+    $audio_path = $relative_path . $file_name;
     ?>
     <html>
     <head>
-        <title>Uploaded PDF</title>
+        <title>Uploaded Audio</title>
         <style>
           body {
             background-color: #f5e1da; 
@@ -44,10 +44,10 @@ if (isset($_FILES['pdf_file'])) {
     </head>
     <body>
       <div class="image-card">
-        <h3>This is your uploaded PDF:</h3>
-        <embed src='<?php echo $pdf_path;?>' type='application/pdf' width='600' height='400'>
+        <h3>This is your uploaded Audio:</h3>
+        <audio controls><source src='<?php echo $audio_path;?>' type='audio/mp3'>Your browser does not support the audio element.</audio>
       </div>
-      <h4>This is the information of the PDF file:</h4>
+      <h4>This is the information of the Audio file:</h4>
       <?php
       echo '<pre>';
       var_dump($_FILES);
@@ -58,7 +58,7 @@ if (isset($_FILES['pdf_file'])) {
     <?php
     exit;
   } else {
-    echo 'Failed to upload PDF file';
+    echo 'Failed to upload Audio file';
   }
 }
 ?>
